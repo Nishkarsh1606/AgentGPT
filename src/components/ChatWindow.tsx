@@ -68,7 +68,7 @@ const ChatWindow = ({
         (className ?? "")
       }
     >
-      <MacWindowHeader title={title} messages={messages} />
+      {/* <MacWindowHeader title={title} messages={messages} /> */}
       <div
         className="window-heights mb-2 mr-2"
         ref={scrollRef}
@@ -89,7 +89,7 @@ const ChatWindow = ({
                 message={{
                   type: "system",
                   value:
-                    "> Create an agent by adding a name / goal, and hitting deploy!",
+                    "Name your assistant and ask them to do things for you",
                 }}
               />
             </Expand>
@@ -98,14 +98,9 @@ const ChatWindow = ({
                 message={{
                   type: "system",
                   value:
-                    "📢 You can provide your own OpenAI API key in the settings tab for increased limits!",
+                    "Remove limitations by upgrading to paid!",
                 }}
               />
-              {showDonation && (
-                <Expand delay={0.7} type="spring">
-                  <DonationMessage />
-                </Expand>
-              )}
             </Expand>
           </>
         )}
@@ -300,11 +295,11 @@ const getMessageIcon = (message: Message) => {
 const getMessagePrefix = (message: Message) => {
   switch (message.type) {
     case "goal":
-      return "Embarking on a new goal:";
+      return "Adding tasks";
     case "task":
       return "Added task:";
     case "thinking":
-      return "Thinking...";
+      return "Executing:";
     case "action":
       return message.info ? message.info : "Executing:";
   }

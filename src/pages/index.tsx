@@ -50,20 +50,6 @@ const Home: NextPage = () => {
   //   },
   // });
 
-  useEffect(() => {
-    const key = "agentgpt-modal-opened-new";
-    const savedModalData = localStorage.getItem(key);
-
-    // Momentarily always run
-    setTimeout(() => {
-      if (savedModalData == null) {
-        setShowHelpDialog(true);
-      }
-    }, 3000);
-
-    localStorage.setItem(key, JSON.stringify(true));
-  }, []);
-
   const nameInputRef = useRef<HTMLInputElement>(null);
   useEffect(() => {
     nameInputRef?.current?.focus();
@@ -108,17 +94,17 @@ const Home: NextPage = () => {
 
   const proTitle = (
     <>
-      AgentGPT<span className="ml-1 text-amber-500/90">Pro</span>
+      Findr<span className="ml-1 text-amber-500/90">AI</span>
     </>
   );
 
   return (
     <DefaultLayout>
-      <HelpDialog
+      {/* <HelpDialog
         show={showHelpDialog}
         close={() => setShowHelpDialog(false)}
-      />
-      <SettingsDialog
+      /> */}
+      {/* <SettingsDialog
         reactModelStates={{
           customApiKey,
           setCustomApiKey,
@@ -131,12 +117,12 @@ const Home: NextPage = () => {
         }}
         show={showSettingsDialog}
         close={() => setShowSettingsDialog(false)}
-      />
+      /> */}
       <main className="flex min-h-screen flex-row">
-        <Drawer
+        {/* <Drawer
           showHelp={() => setShowHelpDialog(true)}
           showSettings={() => setShowSettingsDialog(true)}
-        />
+        /> */}
         <div
           id="content"
           className="z-10 flex min-h-screen w-full items-center justify-center p-2 px-2 sm:px-4 md:px-10"
@@ -150,21 +136,9 @@ const Home: NextPage = () => {
               className="relative flex flex-col items-center font-mono"
             >
               <div className="flex flex-row items-start shadow-2xl">
-                <span className="text-4xl font-bold text-[#C0C0C0] xs:text-5xl sm:text-6xl">
-                  Agent
+                <span className="text-4xl font-bold text-[#ffffff] xs:text-5xl sm:text-6xl">
+                  Findr Workflows
                 </span>
-                <span className="text-4xl font-bold text-white xs:text-5xl sm:text-6xl">
-                  GPT
-                </span>
-                <PopIn delay={0.5} className="sm:absolute sm:right-0 sm:top-2">
-                  <Badge>Beta 🚀</Badge>
-                </PopIn>
-              </div>
-              <div className="mt-1 text-center font-mono text-[0.7em] font-bold text-white">
-                <p>
-                  Assemble, configure, and deploy autonomous AI Agents in your
-                  browser.
-                </p>
               </div>
             </div>
 
@@ -172,7 +146,7 @@ const Home: NextPage = () => {
               <ChatWindow
                 className="sm:mt-4"
                 messages={messages}
-                title={session?.user.subscriptionId ? proTitle : "AgentGPT"}
+                title={session?.user.subscriptionId ? proTitle : "Findr Assistant"}
                 showDonation={
                   status != "loading" && !session?.user.subscriptionId
                 }
@@ -187,13 +161,13 @@ const Home: NextPage = () => {
                   left={
                     <>
                       <FaRobot />
-                      <span className="ml-2">Name:</span>
+                      <span className="ml-2">Assistant:</span>
                     </>
                   }
                   value={name}
                   disabled={agent != null}
                   onChange={(e) => setName(e.target.value)}
-                  placeholder="AgentGPT"
+                  placeholder="Findr Workflows"
                 />
               </Expand>
               <Expand delay={1.3}>
@@ -201,13 +175,13 @@ const Home: NextPage = () => {
                   left={
                     <>
                       <FaStar />
-                      <span className="ml-2">Goal:</span>
+                      <span className="ml-2">Tasks:</span>
                     </>
                   }
                   disabled={agent != null}
                   value={goalInput}
                   onChange={(e) => setGoalInput(e.target.value)}
-                  placeholder="Make the world a better place."
+                  placeholder="Email pasta recipe to my co founder"
                 />
               </Expand>
             </div>
@@ -219,15 +193,15 @@ const Home: NextPage = () => {
                 className="sm:mt-10"
               >
                 {agent == null ? (
-                  "Deploy Agent"
+                  "Deploy Assistant"
                 ) : (
                   <>
                     <VscLoading className="animate-spin" size={20} />
-                    <span className="ml-2">Running</span>
+                    <span className="ml-2">Executing</span>
                   </>
                 )}
               </Button>
-              <Button
+              {/* <Button
                 disabled={agent == null}
                 onClick={handleStopAgent}
                 className="sm:mt-10"
@@ -241,7 +215,7 @@ const Home: NextPage = () => {
                 ) : (
                   "Stop agent"
                 )}
-              </Button>
+              </Button> */}
             </Expand>
           </div>
         </div>
